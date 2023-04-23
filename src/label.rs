@@ -32,7 +32,7 @@ pub(crate) fn crate_label(
     );
     let text_node = TextNode::new(label);
     let text_base = TextElement::new()
-        .set("font-family", "sans-serif")
+        // .set("font-family", "'ＭＳ ゴシック'")
         .set("font-size", size)
         .set("x", center_angle_point.0)
         .set("y", center_angle_point.1)
