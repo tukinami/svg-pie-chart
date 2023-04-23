@@ -1,0 +1,13 @@
+[package]
+name = "svg-pie-chart"
+version = "0.1.0"
+edition = "2021"
+authors = [ "tukinami seika" ]
+license = "MIT"
+readme = "README.md"
+description = "creates a pie chart made by svg data."
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+svg = "0.13.1"

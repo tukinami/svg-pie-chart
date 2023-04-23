@@ -1,0 +1,8 @@
+<svg viewBox="0, 0, 100, 100" xmlns="http://www.w3.org/2000/svg">
+<g>
+<clipPath id="test_id">
+<path d="M50,50 L90,50 L91.899254,87.95334 L91.94918,87.95084 L87.95084,8.050823 L8.050823,12.049156 L12.049156,91.94918 L12.099084,91.94668 L10.199833,53.993336 L50,50 z"/>
+</clipPath>
+<circle clip-path="url(#test_id)" cx="50" cy="50" fill="#fe0033" r="40"/>
+</g>
+</svg>

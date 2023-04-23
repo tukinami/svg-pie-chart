@@ -1,0 +1,20 @@
+<svg viewBox="0, 0, 200, 200" xmlns="http://www.w3.org/2000/svg">
+<g>
+<g>
+<clipPath id="p_0">
+<path d="M100,100 L100,60 L140,60 L140,140 L100,140 L100,100 z"/>
+</clipPath>
+<circle clip-path="url(#p_0)" cx="100" cy="100" fill="#fe5555" r="40"/>
+</g>
+</g>
+<g>
+<g>
+<text font-family="sans-serif" font-size="10" stroke="#000" stroke-width="2" text-anchor="middle" x="150" y="100">
+Red
+</text>
+<text fill="rgb(255, 255, 255)" font-family="sans-serif" font-size="10" text-anchor="middle" x="150" y="100">
+Red
+</text>
+</g>
+</g>
+</svg>
