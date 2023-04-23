@@ -5,13 +5,15 @@
 //! [`svg`]: https://github.com/bodoni/svg
 use std::{f64::consts::FRAC_PI_2, f64::consts::TAU};
 
-use svg::{node::element::Group, Document};
+use svg::node::element::Group;
 use util::normalize_angle;
 
 pub mod error;
 mod label;
 mod pie;
 pub(crate) mod util;
+
+pub use svg::Document;
 
 /// Creates pie chart.
 ///
