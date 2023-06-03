@@ -5,15 +5,19 @@ use svg::node::{
 
 use crate::util::{calc_angle_coord, calc_point, normalize_angle};
 
-pub(crate) fn crate_label(
+pub(crate) fn crate_label<S>(
     circle_center: (u32, u32),
     color: (u8, u8, u8),
+    font_family: S,
     size: u32,
     position_radius: u32,
     center_angle: f64,
     _target_angle_range: f64,
     label: &str,
-) -> Group {
+) -> Group
+where
+    S: AsRef<str>,
+{
     let base_color = format!("rgb({}, {}, {})", color.0, color.1, color.2);
     let color_total = color.0 as u32 + color.1 as u32 + color.2 as u32;
     let invert_color = if color_total > (u8::MAX / 2) as u32 {
@@ -32,12 +36,16 @@ pub(crate) fn crate_label(
     );
     let text_node = TextNode::new(label);
     let text_base = TextElement::new()
-        // .set("font-family", "'ＭＳ ゴシック'")
         .set("font-size", size)
         .set("x", center_angle_point.0)
         .set("y", center_angle_point.1)
         .set("text-anchor", "middle")
         .add(text_node);
+    let text_base = if !font_family.as_ref().is_empty() {
+        text_base.set("font-family", format!("'{}'", font_family.as_ref()))
+    } else {
+        text_base
+    };
 
     let text_body = text_base.clone().set("fill", base_color);
     let text_under = text_base.set("stroke", invert_color).set("stroke-width", 2);
@@ -61,6 +69,7 @@ mod tests {
             let label = crate_label(
                 (50, 50),
                 (0, 0, 0),
+                "ＭＳ ゴシック",
                 10,
                 40,
                 FRAC_PI_2,
@@ -78,6 +87,7 @@ mod tests {
             let label = crate_label(
                 (50, 50),
                 (255, 255, 255),
+                "",
                 10,
                 40,
                 -FRAC_PI_2,

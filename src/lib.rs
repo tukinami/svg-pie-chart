@@ -45,6 +45,7 @@ pub use svg::Document;
 ///     100,         // height
 ///     40,          // radius of circle
 ///     (0, 0, 0),   // color of label
+///     "sans-serif",// font-family of label
 ///     10,          // size of label
 ///     20,          // radius of label's position
 ///     &case        // statuses of pies
@@ -54,16 +55,18 @@ pub use svg::Document;
 /// ```
 ///
 /// [`svg`]: https://github.com/bodoni/svg
-pub fn create_pie_chart<T, R>(
+pub fn create_pie_chart<S, T, R>(
     width: u32,
     height: u32,
     circle_radius: u32,
     label_color: (u8, u8, u8),
+    label_font: S,
     label_size: u32,
     label_position_radius: u32,
     pie_statuses: &[(T, f64, R)],
 ) -> Result<Document, error::PieChartError>
 where
+    S: AsRef<str>,
     T: AsRef<str>,
     R: AsRef<str>,
 {
@@ -95,6 +98,7 @@ where
         let label = label::crate_label(
             circle_center,
             label_color,
+            &label_font,
             label_size,
             label_position_radius,
             center_angle,
@@ -130,7 +134,8 @@ mod tests {
                 ("Other", 0.15, "#999"),
             ];
 
-            let document = create_pie_chart(100, 100, 40, (0, 0, 0), 10, 20, &case).unwrap();
+            let document =
+                create_pie_chart(100, 100, 40, (0, 0, 0), "游ゴシック", 10, 20, &case).unwrap();
             let path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
                 .join("test_target/test_create_pie_chart_001.svg");
             svg::save(path, &document).unwrap();
@@ -140,7 +145,17 @@ mod tests {
         fn success_when_valid_data_002() {
             let case = vec![("Red", 0.5, "#fe5555")];
 
-            let document = create_pie_chart(200, 200, 40, (255, 255, 255), 10, 50, &case).unwrap();
+            let document = create_pie_chart(
+                200,
+                200,
+                40,
+                (255, 255, 255),
+                "ＭＳ ゴシック",
+                10,
+                50,
+                &case,
+            )
+            .unwrap();
             let path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
                 .join("test_target/test_create_pie_chart_002.svg");
             svg::save(path, &document).unwrap();
