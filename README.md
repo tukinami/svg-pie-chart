@@ -24,6 +24,7 @@ let pie_chart = create_pie_chart(
     100,         // height
     40,          // radius of circle
     (0, 0, 0),   // color of label
+    "sans-serif",// font-family of label
     10,          // size of label
     20,          // radius of label's position
     &case        // statuses of pies
