@@ -1,7 +1,4 @@
-use svg::node::{
-    element::{Group, Text as TextElement},
-    Text as TextNode,
-};
+use svg::node::element::{Group, Text as TextElement};
 
 use crate::util::{calc_angle_coord, calc_point, normalize_angle};
 
@@ -34,13 +31,21 @@ where
         circle_center.1,
         position_radius,
     );
-    let text_node = TextNode::new(label);
-    let text_base = TextElement::new()
+
+    let text_base = TextElement::new(label)
         .set("font-size", size)
         .set("x", center_angle_point.0)
         .set("y", center_angle_point.1)
-        .set("text-anchor", "middle")
-        .add(text_node);
+        .set("text-anchor", "middle");
+
+    // let text_node = TextNode::new(label);
+    // let text_base = TextElement::new()
+    //     .set("font-size", size)
+    //     .set("x", center_angle_point.0)
+    //     .set("y", center_angle_point.1)
+    //     .set("text-anchor", "middle")
+    //     .add(text_node);
+
     let text_base = if !font_family.as_ref().is_empty() {
         text_base.set("font-family", format!("'{}'", font_family.as_ref()))
     } else {
@@ -69,7 +74,7 @@ mod tests {
             let label = crate_label(
                 (50, 50),
                 (0, 0, 0),
-                "ＭＳ ゴシック",
+                "ＭＳ 明朝",
                 10,
                 40,
                 FRAC_PI_2,
@@ -87,7 +92,7 @@ mod tests {
             let label = crate_label(
                 (50, 50),
                 (255, 255, 255),
-                "",
+                "ＭＳ ゴシック",
                 10,
                 40,
                 -FRAC_PI_2,
